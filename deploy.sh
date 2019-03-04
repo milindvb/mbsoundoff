@@ -89,8 +89,8 @@ selectNodeVersion () {
 
     NPM_CMD="\"$NODE_EXE\" \"$NPM_JS_PATH\""
   else
-    NPM_CMD= npm
-    NODE_EXE= node
+    NPM_CMD=npm
+    NODE_EXE=node
   fi
 }
 
@@ -128,7 +128,7 @@ cd "$DEPLOYMENT_TARGET"
 TSC="$DEPLOYMENT_TARGET/node_modules/typescript/bin/tsc"
 echo "Building Typescript files."
 "$TSC"
-exitWithMessageOnError "Could not run 'tsc'.  Did 'npm install' run OK?"
+exitWithMessageOnError "Could not run tsc.  Did npm install run OK?"
 echo "Finished Typescript build."
 
 
