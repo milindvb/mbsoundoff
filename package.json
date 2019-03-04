@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "compile": "npx tsc -p ./",
-    "start": "apk add libc6-compat && npm run compile && node ./bin/server.js",
+    "start": "apk add libc6-compat && node ./bin/server.js",
     "debug": "npm run compile && node ./bin/server.js",
     "serve": "nodemon  -- ./bin/server.js",
     "interactive": "node ./bin/interactive.js",
