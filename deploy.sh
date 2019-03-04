@@ -122,16 +122,16 @@ if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   cd - > /dev/null
 fi
 
-# 4. Angular Prod Build
-if [ -e "$DEPLOYMENT_TARGET/angular.json" ]; then
-  cd "$DEPLOYMENT_TARGET"
-  pwd
-  #eval /opt/nodejs/8.11.2/bin/node /home/site/wwwroot/node_modules/.bin/ng build
-  eval /opt/nodejs/10.1.0/bin/node node_modules/.bin/ng build --prod
-  #eval ./node_modules/.bin/ng build --prod
-  exitWithMessageOnError "Angular build failed"
-  cd - > /dev/null
-fi
+# 4. Install typescript definitions
+cd "$DEPLOYMENT_TARGET"
+#4. Run TSC
+TSC="$DEPLOYMENT_TARGET/node_modules/typescript/bin/tsc"
+echo "Building Typescript files."
+"$TSC"
+exitWithMessageOnError "Could not run 'tsc'.  Did 'npm install' run OK?"
+echo "Finished Typescript build."
+
+
 
 ##################################################################################################################################
 
