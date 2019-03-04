@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "npx tsc -p ./",
     "start": "npm run compile && node ./bin/server.js",
-    "debug": "npm run compile && node --nolazy --inspect-brk=9229 ./bin/server.js",
+    "debug": "npm run compile && node ./bin/server.js",
     "serve": "nodemon  -- ./bin/server.js",
     "interactive": "node ./bin/interactive.js",
     "test": "mocha --timeout 5000 -r ts-node/register -r tsconfig-paths/register ./api/tests/*.test.ts"
