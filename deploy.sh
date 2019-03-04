@@ -68,30 +68,29 @@ fi
 # ------------
 
 selectNodeVersion () {
-  if [[ -n "$KUDU_SELECT_NODE_VERSION_CMD" ]]; then
-    SELECT_NODE_VERSION="$KUDU_SELECT_NODE_VERSION_CMD \"$DEPLOYMENT_SOURCE\" \"$DEPLOYMENT_TARGET\" \"$DEPLOYMENT_TEMP\""
-    eval $SELECT_NODE_VERSION
-    exitWithMessageOnError "select node version failed"
+#  if [[ -n "$KUDU_SELECT_NODE_VERSION_CMD" ]]; then
+#    SELECT_NODE_VERSION="$KUDU_SELECT_NODE_VERSION_CMD \"$DEPLOYMENT_SOURCE\" \"$DEPLOYMENT_TARGET\" \"$DEPLOYMENT_TEMP\""
+#    eval $SELECT_NODE_VERSION
+#    exitWithMessageOnError "select node version failed"
 
-    if [[ -e "$DEPLOYMENT_TEMP/__nodeVersion.tmp" ]]; then
-      NODE_EXE=`cat "$DEPLOYMENT_TEMP/__nodeVersion.tmp"`
-      exitWithMessageOnError "getting node version failed"
-    fi
+#    if [[ -e "$DEPLOYMENT_TEMP/__nodeVersion.tmp" ]]; then
+#      NODE_EXE=`cat "$DEPLOYMENT_TEMP/__nodeVersion.tmp"`
+#      exitWithMessageOnError "getting node version failed"
+#    fi
+#     if [[ -e "$DEPLOYMENT_TEMP/.tmp" ]]; then
+#      NPM_JS_PATH=`cat "$DEPLOYMENT_TEMP/__npmVersion.tmp"`
+#      exitWithMessageOnError "getting npm version failed"
+#    fi
 
-    if [[ -e "$DEPLOYMENT_TEMP/.tmp" ]]; then
-      NPM_JS_PATH=`cat "$DEPLOYMENT_TEMP/__npmVersion.tmp"`
-      exitWithMessageOnError "getting npm version failed"
-    fi
+#    if [[ ! -n "$NODE_EXE" ]]; then
+#      NODE_EXE=node
+#    fi
 
-    if [[ ! -n "$NODE_EXE" ]]; then
-      NODE_EXE=node
-    fi
-
-    NPM_CMD="\"$NODE_EXE\" \"$NPM_JS_PATH\""
-  else
-    NPM_CMD=npm
-    NODE_EXE=node
-  fi
+#    NPM_CMD="\"$NODE_EXE\" \"$NPM_JS_PATH\""
+#  else
+    NPM_CMD=/opt/nodejs/10.10.0/bin/npm
+    NODE_EXE=/opt/nodejs/10.10.0/bin/node
+#  fi
 }
 
 ##################################################################################################################################
@@ -114,9 +113,9 @@ if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   echo "test message 9999"
   cd "$DEPLOYMENT_TARGET"
   echo "test message 9998 $DEPLOYMENT_TARGET"
-  eval npm install --production
+  eval /opt/nodejs/10.10.0/bin/npm install --production
   echo "test message 9997 $DEPLOYMENT_TARGET"
-  eval npm install --only=dev
+  eval /opt/nodejs/10.10.0/bin/npm install --only=dev
   echo "test message 9996 $DEPLOYMENT_TARGET"
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
